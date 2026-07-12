@@ -1,4 +1,4 @@
-import { useTheme } from '../contexts/theme.jsx'
+import { useTheme } from '../contexts/theme'
 
 export default function ThemeButton() {
 

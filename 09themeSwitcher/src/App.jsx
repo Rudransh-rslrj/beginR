@@ -1,6 +1,6 @@
 
 
-import { ThemeProvider } from './contexts/theme.jsx'
+import { ThemeProvider } from './contexts/theme'
 import ThemeButton from './components/ThemeButton'
 import { useState, useEffect } from 'react'
 import Card from './components/Card'
