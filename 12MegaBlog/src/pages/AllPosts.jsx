@@ -6,8 +6,8 @@ function AllPosts() {
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
         appwriteService.getPosts().then((result)=>{
-            if(result && Array.isArray(result.documents)){
-                setPosts(result.documents)
+            if(result && Array.isArray(result.rows)){
+                setPosts(result.rows)
             } else {
                 setPosts([])
             }
@@ -18,16 +18,18 @@ function AllPosts() {
   return (
     <div className='w-full py-8'>
         <Container>
-            <div className='flex flex-wrap'></div>
+            <div className='flex flex-wrap'>
             {posts && posts.length > 0 ? posts.map((post)=>
                  (
                     <div key={post.$id} className='p-2 w-1/4'>
-                        <PostCard post={post}/>
+                        <PostCard {...post} />
                     </div>
                 )
             ) : (
                 <p className='text-center w-full py-10'>No posts available.</p>
+                
             )}
+            </div>
         </Container>
       
     </div>

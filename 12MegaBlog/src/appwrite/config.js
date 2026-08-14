@@ -106,22 +106,42 @@ export class Service{
             return false;
         }
     }
+    // async deleteFile(fileId) {
+    //     if (!fileId) return false;
+
+    //     try {
+    //         await this.bucket.deleteFile({
+    //             bucketId: conf.appwriteBucketId,
+    //             fileId,
+    //         });
+
+    //         return true;
+    //     } catch (error) {
+    //         console.log("appwrite service :: deleteFile :: error", error);
+    //         return false;
+    //     }
+    // }
     async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile({
                 bucketId: conf.appwriteBucketId,
-                fileId: ID.unique(),
+                fileId: fileId,
             });
+
             return true;
         } catch (error) {
+            if (error.code === 404) {
+                return true;
+            }
+
             console.log("appwrite service :: deleteFile :: error", error);
             return false;
         }
     }
     getFilePreview(fileId){
-        return this.bucket.getFilePreview({
+        return this.bucket.getFileView({
             bucketId: conf.appwriteBucketId,
-            fileId: ID.unique(),
+            fileId: fileId,
         })
     }
 
